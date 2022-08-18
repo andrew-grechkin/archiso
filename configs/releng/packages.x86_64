@@ -1,5 +1,7 @@
 alsa-utils
 amd-ucode
+archinstall
+ansible
 arch-install-scripts
 archinstall
 b43-fwcutter
@@ -31,12 +33,15 @@ f2fs-tools
 fatresize
 foot-terminfo
 fsarchiver
+git
 gpart
 gpm
 gptfdisk
 grml-zsh-config
 grub
 hdparm
+htop
+hwinfo
 hyperv
 intel-ucode
 irssi
@@ -57,6 +62,7 @@ livecd-sounds
 lsscsi
 lvm2
 lynx
+make
 man-db
 man-pages
 mc
@@ -83,6 +89,7 @@ openconnect
 openpgp-card-tools
 openssh
 openvpn
+pacman-contrib
 partclone
 parted
 partimage
@@ -115,6 +122,7 @@ udftools
 usb_modeswitch
 usbmuxd
 usbutils
+vifm
 vim
 virtualbox-guest-utils-nox
 vpnc
@@ -126,3 +134,6 @@ xdg-utils
 xfsprogs
 xl2tpd
 zsh
+zsh-autosuggestions
+zsh-completions
+zsh-syntax-highlighting
