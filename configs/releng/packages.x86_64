@@ -1,5 +1,7 @@
 alsa-utils
 amd-ucode
+archinstall
+ansible
 arch-install-scripts
 archinstall
 b43-fwcutter
@@ -31,18 +33,23 @@ fatresize
 foot-terminfo
 fsarchiver
 ghostty-terminfo
+git
 gpart
 gpm
 gptfdisk
 grml-zsh-config
 grub
 hdparm
+htop
+hwinfo
 hyperv
 intel-ucode
 irssi
 iw
 iwd
 jfsutils
+jq
+just
 kitty-terminfo
 kmscon-terminfo
 ldns
@@ -58,6 +65,7 @@ livecd-sounds
 lsscsi
 lvm2
 lynx
+make
 man-db
 man-pages
 mc
@@ -84,6 +92,7 @@ openconnect
 openpgp-card-tools
 openssh
 openvpn
+pacman-contrib
 partclone
 parted
 partimage
@@ -106,6 +115,7 @@ squashfs-tools
 sudo
 syslinux
 systemd-resolvconf
+systemd-ukify
 tcpdump
 terminus-font
 testdisk
@@ -116,6 +126,7 @@ udftools
 usb_modeswitch
 usbmuxd
 usbutils
+vifm
 vim
 virtualbox-guest-utils-nox
 vpnc
@@ -127,3 +138,6 @@ xdg-utils
 xfsprogs
 xl2tpd
 zsh
+zsh-autosuggestions
+zsh-completions
+zsh-syntax-highlighting

@@ -1,0 +1,137 @@
+# vim: filetype=gitconfig
+
+[apply]
+    whitespace = fix
+
+[blame]
+    markUnblamableLines = true
+    ; ignoreRevsFile      = .git-blame-ignore-revs
+
+[clone]
+    rejectShallow = true
+
+[core]
+    ; abbrev         = 8
+    autocrlf       = false
+    ; editor         = vi
+    fsmonitor      = true
+    preloadIndex   = true
+    quotePath      = false
+    tabwidth       = 4
+    untrackedCache = true
+    whitespace     = trailing-space,space-before-tab,blank-at-eol,blank-at-eof,cr-at-eol
+
+[diff]
+    algorithm       = minimal
+    colorMoved      = true
+    colorMovedWS    = ignore-all-space
+    guitool         = meld
+    indentHeuristic = true
+    submodule       = diff
+    tool            = fugitive
+
+[difftool]
+    prompt        = false
+    trustExitCode = true                                                       # be able to abort all diffs with ':cq' or ':cquit'
+
+[difftool "fugitive"]
+    cmd = vi -f -c "Gdiffsplit!" "$MERGED"
+
+[difftool "vimdiff"]
+    cmd = vimdiff "$LOCAL" "$REMOTE"
+
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+
+[fetch]
+    parallel         = 0
+    prune            = true
+    pruneTags        = false
+    writeCommitGraph = true
+
+[format]
+    pretty = %C(yellow)commit:  %H%C(reset)%n%C(dim white)author:  [%C(brightgreen)%ai%C(white)] %aN <%aE>%n%C(dim white)commit:  [%C(brightgreen)%ci%C(white)] %cN <%cE> %C(cyan)%G?%n%C(dim white)parents: %p%n%C(dim white)refs:%C(auto)%d%C(reset) %(describe:tags)%n%n%C(reset)%C(bold)%B%C(reset)
+
+[gc]
+    auto = 0
+
+[grep]
+    extendedRegexp = true
+    lineNumber     = true
+    patternType    = perl
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.config/git/allowed-signers
+
+[gui]
+    encoding = utf-8
+
+[init]
+    defaultBranch       = main
+    defaultObjectFormat = sha256
+    templateDir         = ~/.config/git/init-template
+
+[help]
+    autoCorrect = prompt
+
+[http]
+    sslVerify = true
+
+[log]
+    color    = auto
+    date     = iso8601
+    decorate = short
+    follow   = true
+
+[merge]
+    conflictStyle = zdiff3
+    guitool       = meld
+    tool          = fugitive
+
+[mergetool]
+    keepBackup    = false
+    prompt        = false
+    trustExitCode = true
+
+[mergetool "fugitive"]
+    cmd = vi -f -c "Gdiffsplit!" "$MERGED"
+
+[mergetool "meld"]
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
+[mergetool "nvimdiff4"]
+    cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED" -c 'windo setlocal nomodifiable' -c '$wincmd w' -c 'setlocal modifiable' -c 'wincmd J'
+
+[pager]
+    branch = false
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+    followTags      = false
+
+[rebase]
+    abbreviateCommands  = true
+    autoSquash          = true
+    autoStash           = true
+    missingCommitsCheck = warn
+    stat                = true
+    updateRefs          = true
+
+[rerere]
+    autoUpdate = true
+    enabled    = true
+
+[safe]
+    directory = /home/git/*
+
+[status]
+    showStash = true
+
+[tag]
+    sort = version:refname
+
+[include]
+    path = config.d/alias
