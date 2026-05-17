@@ -38,3 +38,35 @@ install-man:
 	rst2man man/mkarchiso.1.rst $(MAN_DIR)/man1/mkarchiso.1
 
 .PHONY: check install install-doc install-man install-profiles install-scripts shellcheck
+
+DATE        := $(shell date "+%Y.%m.%d")
+ISO_IMAGE    = out/archlinux-$(DATE)-x86_64.iso
+QCOW2_IMAGE  = out/arch-install.uefi.qcow2
+
+$(QCOW2_IMAGE):
+	qemu-img create -f qcow2 $(QCOW2_IMAGE) 128G
+
+$(ISO_IMAGE): configs/releng/packages.x86_64
+	@sudo mkarchiso -v -w /tmp/archiso-tmp ./configs/releng
+	@sudo rm -rf /tmp/archiso-tmp
+
+build: $(ISO_IMAGE)
+
+run: $(QCOW2_IMAGE) $(ISO_IMAGE)
+	@echo "Executing arch-iso: $(ISO_IMAGE)"
+	@qemu-system-x86_64                                                      \
+		-audiodev pa,id=snd0                                                 \
+		-bios /usr/share/ovmf/x64/OVMF.fd                                    \
+		-cpu host                                                            \
+		-device ich9-intel-hda                                               \
+		-device hda-output,audiodev=snd0                                     \
+		-drive file=$(QCOW2_IMAGE),if=virtio,index=0,media=disk,format=qcow2 \
+		-drive file=$(ISO_IMAGE),if=virtio,index=1,media=cdrom               \
+		-display "gtk,zoom-to-fit=on"                                        \
+		-enable-kvm                                                          \
+		-k en-us                                                             \
+		-m 4G                                                                \
+		-name archiso,process=archiso_0                                      \
+		-nic user,model=virtio-net-pci                                       \
+		-smp 2                                                               \
+		-vga virtio

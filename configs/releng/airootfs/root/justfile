@@ -1,0 +1,13 @@
+@install: update-playbook
+    lsblk
+    echo "Starting installation..."
+    echo
+    cd git/ansible-arch && ansible-playbook -i localhost-not-ready.yaml playbooks/arch-install-os.yaml
+
+@update-playbook: ensure-repo-exists
+    git -C git/ansible-arch pull
+
+[private]
+@ensure-repo-exists:
+    [[ -d git              ]] || mkdir -p git
+    [[ -d git/ansible-arch ]] || git clone https://github.com/andrew-grechkin/ansible-arch.git git/ansible-arch
