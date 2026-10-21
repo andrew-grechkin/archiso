@@ -1,6 +1,7 @@
-@install: update-playbook
+install: update-playbook
+    #!/usr/bin/env -S bash -Eeuo pipefail
     lsblk
-    echo "Starting installation..."
+    echo "> Starting installation..."
     echo
     cd git/ansible-arch && ansible-playbook -i localhost-not-ready.yaml playbooks/arch-install-os.yaml
 

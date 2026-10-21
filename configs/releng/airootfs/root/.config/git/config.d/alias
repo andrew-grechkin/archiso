@@ -2,7 +2,7 @@
 
 [alias]
     aa           = add --all
-    amend        = commit --amend --reset-author
+    amend        = !"git-x-amend"
     b            = branch -vv
     behind       = !"f(){ mu=\"$(git main-upstream)\"; echo \"Behind $mu:\" >&2; git log --oneline \"${1:-HEAD}..$mu\" | wc -l; }; f"
     branches     = !"git branch --list --no-column --format='%(refname:lstrip=2)'"
@@ -26,7 +26,7 @@
     fam          = !"fzf-git-log-all-merges"
     fall         = fetch --all --force
     fg           = !"fzf-git-log-branch-graph"
-    fh           = !"cd -- \"${GIT_PREFIX:-.}\" && GIT_PREFIX="" fzf-git-file-show-history"
+    fh           = !"cd -- \"${GIT_PREFIX:-.}\" && GIT_PREFIX="" fzf-git-x-blame"
     fr           = !"fzf-git-log-reflog"
     ha           = !"git --no-pager log --abbrev-commit --all --color=always --graph --pretty=oneline --topo-order"
     l            = !"git-log-branch"
@@ -128,6 +128,8 @@
 
     # rewrite history and reset dates
     rewrite-history = rebase -ir --autosquash --committer-date-is-author-date --empty=drop --no-update-refs --reset-author-date
+
+    install-hooks = config set core.hooksPath hooks
 
     ### experimental ---------------------------------------------------------------------------------------------------
 
